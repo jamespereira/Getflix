@@ -8,45 +8,14 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Button } from "../ui/button";
-
-type Rating = {
-  Source: string;
-  Value: string;
-};
-type Movie = {
-  Actors: string;
-  Awards: string;
-  BoxOffice: string;
-  Country: string;
-  DVD: string;
-  Director: string;
-  Genre: string;
-  Language: string;
-  Metascore: string;
-  Plot: string;
-  Poster: string;
-  Production: string;
-  Rated: string;
-  Ratings: Rating[];
-  Released: string;
-  Response: string;
-  Runtime: string;
-  Title: string;
-  Type: string;
-  Website: string;
-  Writer: string;
-  Year: string;
-  imdbID: string;
-  imdbRating: string;
-  imdbVotes: string;
-};
+import { MovieFullDetails } from "@/types";
 
 type Props = {
   movieId: string;
 };
 
 function MovieDetails({ movieId }: Props) {
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useState<MovieFullDetails | null>(null);
 
   async function getMovieDetails(id: string) {
     const apiURL = "https://www.omdbapi.com/?i=";

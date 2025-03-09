@@ -7,7 +7,7 @@ type Props = {
 
 function Search({ handleChange, search }: Props) {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <h1 className="text-3xl">Search for your movie</h1>
       <Input
         type="text"

@@ -7,14 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import MovieDetails from "./MovieDetails";
-
-type Movie = {
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string;
-  imdbID: string;
-};
+import { Movie } from "@/types";
 
 type Props = {
   movies: Movie[];
@@ -38,7 +31,7 @@ function Results({ movies }: Props) {
             <img src={movie.Poster} />
           </CardContent>
           <CardFooter>
-            <MovieDetails movieId={movie.imdbID} />
+            {/* <MovieDetails movieId={movie.imdbID} /> */}
           </CardFooter>
         </Card>
       ))}

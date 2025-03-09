@@ -8,7 +8,7 @@ type Props = {
 function SearchBar({ handleChange, search }: Props) {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-3xl">Search</h1>
+      <h1 className="text-4xl uppercase">Search</h1>
       <Input
         type="text"
         value={search}

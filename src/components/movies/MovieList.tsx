@@ -47,11 +47,11 @@ function Results({ movies }: Props) {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 py-6">
       {movies?.map((movie: Movie) => (
-        <Card key={movie.imdbID} className="p-4 justify-between">
-          <CardHeader>
+        <Card key={movie.imdbID} className="p-4 justify-between gap-0">
+          <CardHeader className="p-2">
             <CardTitle>
               <div className="flex justify-between">
-                <p>{movie.Title}</p>
+                <h2 className="text-2xl">{movie.Title}</h2>
                 <button
                   className="cursor-pointer"
                   onClick={() => updateWatchlist(movie)}
@@ -68,7 +68,7 @@ function Results({ movies }: Props) {
               <p>{movie.Year}</p>
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-2">
             <div className="overflow-hidden">
               <img
                 src={movie.Poster}
@@ -77,7 +77,7 @@ function Results({ movies }: Props) {
               />
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="p-2">
             <MovieDetails movieId={movie.imdbID} />
           </CardFooter>
         </Card>

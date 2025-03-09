@@ -53,11 +53,18 @@ function MovieDetails({ movieId }: Props) {
           <DialogHeader>
             <DialogTitle>{movie.Title}</DialogTitle>
             <DialogDescription>
-              <img
+              <div className="overflow-hidden">
+                <img
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
+                />
+              </div>
+              {/* <img
                 src={movie.Poster}
                 alt={movie.Title}
                 className="w-48 h-auto my-4"
-              />
+              /> */}
               <p>
                 <strong>Rated:</strong> {movie.Rated}
               </p>

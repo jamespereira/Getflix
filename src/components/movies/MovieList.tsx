@@ -27,7 +27,13 @@ function Results({ movies }: Props) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <img src={movie.Poster} />
+            <div className="overflow-hidden">
+              <img
+                src={movie.Poster}
+                alt={movie.Title}
+                className="transition transform hover:scale-110 object-cover w-full h-full duration-150 ease-in-out"
+              />
+            </div>
           </CardContent>
           <CardFooter>
             <MovieDetails movieId={movie.imdbID} />

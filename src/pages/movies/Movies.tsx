@@ -5,6 +5,7 @@ import axiosInstance from "@/utils/axiosInstance";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDebounce } from "use-debounce";
+import { MoonLoader } from "react-spinners";
 
 function Movies() {
   const [search, setSearch] = useState("");
@@ -64,7 +65,12 @@ function Movies() {
         dataLength={movies.length}
         next={() => setPage((prev) => prev + 1)}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
+        loader={
+          <div className="flex w-full items-center gap-4 justify-center p-4">
+            <MoonLoader size={24} />
+            <h4>Loading...</h4>
+          </div>
+        }
       >
         <MovieList movies={movies} />
       </InfiniteScroll>

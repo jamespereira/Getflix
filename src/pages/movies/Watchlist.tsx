@@ -1,24 +1,17 @@
 import MovieList from "@/components/movies/MovieList";
-import { Movie } from "@/types";
-import { useEffect, useState } from "react";
+import useWatchlist from "@/hooks/useWatchlist";
 
 function Watchlist() {
-  const [watchlist, setWatchlist] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedWatchlist = localStorage.getItem("watchlist");
-
-      if (storedWatchlist) {
-        setWatchlist(JSON.parse(storedWatchlist));
-      }
-    }
-  }, []);
+  const [watchlist, updateWatchlist] = useWatchlist();
 
   return (
     <section className="flex flex-col w-full max-w-[1280px] p-12">
       <h1 className="text-4xl uppercase">Watchlist</h1>
-      <MovieList movies={watchlist} />
+      <MovieList
+        movies={watchlist}
+        updateWatchlist={updateWatchlist}
+        watchlist={watchlist}
+      />
     </section>
   );
 }

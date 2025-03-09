@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDebounce } from "use-debounce";
 import { MoonLoader } from "react-spinners";
+import useWatchlist from "@/hooks/useWatchlist";
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -14,6 +15,8 @@ function Search() {
   const [page, setPage] = useState(1);
   const [debouncedPage] = useDebounce(page, 500);
   const [hasMore, setHasMore] = useState(false);
+
+  const [watchlist, updateWatchlist] = useWatchlist();
 
   async function searchMovies(input: string, page: number) {
     const apiKey = import.meta.env.VITE_OMDP_API_KEY;
@@ -71,7 +74,11 @@ function Search() {
           </div>
         }
       >
-        <MovieList movies={movies} />
+        <MovieList
+          movies={movies}
+          watchlist={watchlist}
+          updateWatchlist={updateWatchlist}
+        />
       </InfiniteScroll>
     </section>
   );

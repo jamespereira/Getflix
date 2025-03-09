@@ -9,41 +9,14 @@ import {
 import MovieDetails from "./MovieDetails";
 import { Movie } from "@/types";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { useEffect, useState } from "react";
 
 type Props = {
   movies: Movie[];
+  updateWatchlist: (movie: Movie) => void;
+  watchlist: Movie[];
 };
 
-function Results({ movies }: Props) {
-  const [watchlist, setWatchlist] = useState<Movie[]>(() => {
-    if (typeof window !== "undefined") {
-      const storedWatchlist = localStorage.getItem("watchlist");
-      return storedWatchlist ? JSON.parse(storedWatchlist) : [];
-    }
-    return [];
-  });
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("watchlist", JSON.stringify(watchlist));
-    }
-  }, [watchlist]);
-
-  function updateWatchlist(movie: Movie) {
-    setWatchlist((prevWatchlist) => {
-      const isMovieInWatchlist = prevWatchlist.some(
-        (p) => p.imdbID === movie.imdbID
-      );
-
-      if (isMovieInWatchlist) {
-        return prevWatchlist.filter((p) => p.imdbID !== movie.imdbID); // Remove movie
-      } else {
-        return [...prevWatchlist, movie];
-      }
-    });
-  }
-
+function MovieList({ movies, updateWatchlist, watchlist }: Props) {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 py-6">
       {movies?.map((movie: Movie) => (
@@ -56,7 +29,7 @@ function Results({ movies }: Props) {
                   className="cursor-pointer"
                   onClick={() => updateWatchlist(movie)}
                 >
-                  {watchlist.some((w) => w.imdbID === movie.imdbID) ? (
+                  {watchlist.some((m) => m.imdbID === movie.imdbID) ? (
                     <FaStar color="#fc0b83" />
                   ) : (
                     <FaRegStar />
@@ -86,4 +59,4 @@ function Results({ movies }: Props) {
   );
 }
 
-export default Results;
+export default MovieList;

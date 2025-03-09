@@ -50,14 +50,14 @@ function Results({ movies }: Props) {
         <Card key={movie.imdbID} className="p-4 justify-between gap-0">
           <CardHeader className="p-2">
             <CardTitle>
-              <div className="flex justify-between">
+              <div className="flex justify-between items-start">
                 <h2 className="text-2xl">{movie.Title}</h2>
                 <button
                   className="cursor-pointer"
                   onClick={() => updateWatchlist(movie)}
                 >
                   {watchlist.some((w) => w.imdbID === movie.imdbID) ? (
-                    <FaStar />
+                    <FaStar color="#fc0b83" />
                   ) : (
                     <FaRegStar />
                   )}

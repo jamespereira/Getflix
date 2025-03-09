@@ -43,7 +43,11 @@ function MovieDetails({ movieId }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button onClick={() => getMovieDetails(movieId)} variant="outline">
+        <Button
+          onClick={() => getMovieDetails(movieId)}
+          variant="default"
+          color="#1c8dff"
+        >
           View Details
         </Button>
       </DialogTrigger>

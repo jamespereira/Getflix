@@ -57,7 +57,7 @@ function Search() {
   }, [debouncedSearch, debouncedPage]);
 
   return (
-    <section className="flex flex-col m-w-[1280px] p-12">
+    <section className="flex flex-col w-full max-w-[1280px] p-12">
       <SearchBar handleChange={handleChange} search={search} />
 
       <InfiniteScroll

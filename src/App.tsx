@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div className="flex-1 bg-(--bg-azure-20) ">
+      <div className="flex flex-1 w-full bg-(--bg-azure-20) justify-center">
         <Routes>
           <Route path="/" element={<Search />} />
           <Route path="/Watchlist" element={<Watchlist />} />

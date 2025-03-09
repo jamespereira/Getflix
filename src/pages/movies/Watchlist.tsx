@@ -16,7 +16,7 @@ function Watchlist() {
   }, []);
 
   return (
-    <section className="flex flex-col m-w-[1280px] p-12">
+    <section className="flex flex-col w-full max-w-[1280px] p-12">
       <h1 className="text-4xl uppercase">Watchlist</h1>
       <MovieList movies={watchlist} />
     </section>

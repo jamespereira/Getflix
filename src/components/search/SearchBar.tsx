@@ -5,10 +5,10 @@ type Props = {
   search: string;
 };
 
-function Search({ handleChange, search }: Props) {
+function SearchBar({ handleChange, search }: Props) {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-3xl">Search for your movie</h1>
+      <h1 className="text-3xl">Search</h1>
       <Input
         type="text"
         value={search}
@@ -20,4 +20,4 @@ function Search({ handleChange, search }: Props) {
   );
 }
 
-export default Search;
+export default SearchBar;

@@ -1,5 +1,5 @@
 import MovieList from "@/components/movies/MovieList";
-import Search from "@/components/search/Search";
+import SearchBar from "@/components/search/SearchBar";
 import { Movie } from "@/types";
 import axiosInstance from "@/utils/axiosInstance";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useDebounce } from "use-debounce";
 import { MoonLoader } from "react-spinners";
 
-function Movies() {
+function Search() {
   const [search, setSearch] = useState("");
   const [debouncedSearch] = useDebounce(search, 500);
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -30,7 +30,6 @@ function Movies() {
       if (data.Error) {
         throw new Error(`No response`);
       }
-      console.log("res", data);
       if (!data.Error) {
         setMovies((prev) => [...prev, ...data.Search]);
         if (data.Search.length < 10) {
@@ -59,7 +58,7 @@ function Movies() {
 
   return (
     <section className="flex flex-col m-w-[1280px] p-12">
-      <Search handleChange={handleChange} search={search} />
+      <SearchBar handleChange={handleChange} search={search} />
 
       <InfiniteScroll
         dataLength={movies.length}
@@ -78,4 +77,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default Search;

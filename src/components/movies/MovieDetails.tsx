@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -43,7 +42,7 @@ function MovieDetails({ movieId }: Props) {
 
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button onClick={() => getMovieDetails(movieId)} variant="outline">
           View Details
         </Button>
@@ -52,71 +51,67 @@ function MovieDetails({ movieId }: Props) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>{movie.Title}</DialogTitle>
-            <DialogDescription>
-              <div className="overflow-hidden">
+
+            <div className="overflow-hidden">
+              <div>
                 <img
                   src={movie.Poster}
                   alt={movie.Title}
                   className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
                 />
               </div>
-              {/* <img
-                src={movie.Poster}
-                alt={movie.Title}
-                className="w-48 h-auto my-4"
-              /> */}
-              <p>
-                <strong>Rated:</strong> {movie.Rated}
-              </p>
-              <p>
-                <strong>Released:</strong> {movie.Released}
-              </p>
-              <p>
-                <strong>Runtime:</strong> {movie.Runtime}
-              </p>
-              <p>
-                <strong>Genre:</strong> {movie.Genre}
-              </p>
-              <p>
-                <strong>Director:</strong> {movie.Director}
-              </p>
-              <p>
-                <strong>Writer:</strong> {movie.Writer}
-              </p>
-              <p>
-                <strong>Actors:</strong> {movie.Actors}
-              </p>
-              <p>
-                <strong>Plot:</strong> {movie.Plot}
-              </p>
-              <p>
-                <strong>Language:</strong> {movie.Language}
-              </p>
-              <p>
-                <strong>Country:</strong> {movie.Country}
-              </p>
-              <p>
-                <strong>Awards:</strong> {movie.Awards}
-              </p>
+            </div>
+            <p>
+              <strong>Rated:</strong> {movie.Rated}
+            </p>
+            <p>
+              <strong>Released:</strong> {movie.Released}
+            </p>
+            <p>
+              <strong>Runtime:</strong> {movie.Runtime}
+            </p>
+            <p>
+              <strong>Genre:</strong> {movie.Genre}
+            </p>
+            <p>
+              <strong>Director:</strong> {movie.Director}
+            </p>
+            <p>
+              <strong>Writer:</strong> {movie.Writer}
+            </p>
+            <p>
+              <strong>Actors:</strong> {movie.Actors}
+            </p>
+            <p>
+              <strong>Plot:</strong> {movie.Plot}
+            </p>
+            <p>
+              <strong>Language:</strong> {movie.Language}
+            </p>
+            <p>
+              <strong>Country:</strong> {movie.Country}
+            </p>
+            <p>
+              <strong>Awards:</strong> {movie.Awards}
+            </p>
 
-              <div>
-                <h2 className="font-semibold">Ratings:</h2>
-                <ul>
-                  {movie.Ratings.map((rating, index) => (
-                    <li key={index}>
-                      <strong>{rating.Source}:</strong> {rating.Value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div>
+              <h2 className="font-semibold">Ratings:</h2>
+              <ul>
+                {movie.Ratings.map((rating, index) => (
+                  <li key={index}>
+                    <strong>{rating.Source}:</strong> {rating.Value}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              <p>
-                <strong>Metascore:</strong> {movie.Metascore}
-              </p>
-              <p>
-                <strong>IMDb Rating:</strong> {movie.imdbRating}
-              </p>
-            </DialogDescription>
+            <p>
+              <strong>Metascore:</strong> {movie.Metascore}
+            </p>
+            <p>
+              <strong>IMDb Rating:</strong> {movie.imdbRating}
+            </p>
           </DialogHeader>
         </DialogContent>
       ) : null}

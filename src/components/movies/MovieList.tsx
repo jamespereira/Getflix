@@ -14,7 +14,6 @@ type Props = {
 };
 
 function Results({ movies }: Props) {
-  console.log("movies", movies);
   return (
     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 py-6">
       {movies?.map((movie: Movie) => (
@@ -31,7 +30,7 @@ function Results({ movies }: Props) {
             <img src={movie.Poster} />
           </CardContent>
           <CardFooter>
-            {/* <MovieDetails movieId={movie.imdbID} /> */}
+            <MovieDetails movieId={movie.imdbID} />
           </CardFooter>
         </Card>
       ))}

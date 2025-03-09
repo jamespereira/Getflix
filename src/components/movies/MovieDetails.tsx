@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { MovieFullDetails } from "@/types";
+import axiosInstance from "@/utils/axiosInstance";
 
 type Props = {
   movieId: string;
@@ -18,17 +19,23 @@ function MovieDetails({ movieId }: Props) {
   const [movie, setMovie] = useState<MovieFullDetails | null>(null);
 
   async function getMovieDetails(id: string) {
-    const apiURL = "https://www.omdbapi.com/?i=";
-    const apiKey = "320f6ab2";
+    const apiKey = import.meta.env.VITE_OMDP_API_KEY;
+
     try {
-      const res = await fetch(`${apiURL}${id}&apiKey=${apiKey}`);
-      if (!res.ok) {
+      const { data } = await axiosInstance.get("", {
+        params: {
+          i: id,
+          apiKey,
+        },
+      });
+
+      if (data.Error) {
         throw new Error(`No response`);
       }
-
-      const data = await res.json();
       console.log("res", data);
-      setMovie(data);
+      if (!data.Error) {
+        setMovie(data);
+      }
     } catch (error) {
       console.log(`Error: ${error}`);
     }

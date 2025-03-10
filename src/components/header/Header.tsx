@@ -4,7 +4,7 @@ function Header() {
   const location = useLocation();
 
   return (
-    <header className="w-full h-20 flex items-center justify-center bg-black">
+    <header className="w-full h-16 flex items-center justify-center bg-black fixed z-10">
       <div className="w-full w-max[1280px] flex justify-between items-center px-12">
         <Link to="/">
           <h1 className="text-3xl text-white font-semibold">Getflix</h1>

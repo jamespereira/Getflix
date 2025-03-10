@@ -15,16 +15,20 @@ function Search() {
   const [page, setPage] = useState(1);
   const [debouncedPage] = useDebounce(page, 500);
   const [hasMore, setHasMore] = useState(false);
+  const [type, setType] = useState("");
+  const [debouncedType] = useDebounce(type, 500);
+  const [error, setError] = useState(false);
 
   const [watchlist, updateWatchlist] = useWatchlist();
 
-  async function searchMovies(input: string, page: number) {
+  async function searchMovies(input: string, page: number, type: string) {
     const apiKey = import.meta.env.VITE_OMDP_API_KEY;
 
     try {
       const { data } = await axiosInstance.get("", {
         params: {
           s: input,
+          type: type === "all" ? "" : type,
           page,
           apiKey,
         },
@@ -33,35 +37,46 @@ function Search() {
       if (data.Error) {
         throw new Error(`No response`);
       }
-      if (!data.Error) {
-        setMovies((prev) => [...prev, ...data.Search]);
-        if (data.Search.length < 10) {
-          setHasMore(false);
-        }
+      setError(false);
+      setMovies((prev) => [...prev, ...data.Search]);
+      if (data.Search.length < 10) {
+        setHasMore(false);
       }
     } catch (error) {
       console.log(`Error: ${error}`);
+      setError(true);
     }
   }
 
-  function handleChange(input: string) {
+  function handleInputChange(input: string) {
     setSearch(input);
     setPage(1);
     setMovies([]);
   }
 
+  function handleFilterChange(filter: string) {
+    setType(filter);
+    setMovies([]);
+    setSearch(debouncedSearch);
+    setPage(1);
+  }
+
   useEffect(() => {
     if (debouncedSearch.length > 2) {
-      searchMovies(debouncedSearch, debouncedPage);
+      searchMovies(debouncedSearch, debouncedPage, debouncedType);
       setHasMore(true);
     } else {
       setHasMore(false);
     }
-  }, [debouncedSearch, debouncedPage]);
+  }, [debouncedSearch, debouncedPage, debouncedType]);
 
   return (
     <section className="flex flex-col w-full max-w-[1280px] p-12">
-      <SearchBar handleChange={handleChange} search={search} />
+      <SearchBar
+        handleInputChange={handleInputChange}
+        search={search}
+        handleFilterChange={handleFilterChange}
+      />
 
       <InfiniteScroll
         dataLength={movies.length}
@@ -79,6 +94,11 @@ function Search() {
           watchlist={watchlist}
           updateWatchlist={updateWatchlist}
         />
+        {error && (
+          <div className="flex w-full items-center gap-4 justify-center">
+            <p>Nothing found.</p>
+          </div>
+        )}
       </InfiniteScroll>
     </section>
   );

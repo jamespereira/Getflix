@@ -53,7 +53,12 @@
   --bg-azure-20: #d2e8ff;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "national-condensed-extrabold", Impact, Haettenschweiler,
     "Arial Narrow Bold", sans-serif;
 }

@@ -43,16 +43,12 @@ function MovieDetails({ movieId }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          onClick={() => getMovieDetails(movieId)}
-          variant="default"
-          color="#1c8dff"
-        >
+        <Button onClick={() => getMovieDetails(movieId)} variant="default">
           View Details
         </Button>
       </DialogTrigger>
       {movie ? (
-        <DialogContent className="dark:bg-gray-900">
+        <DialogContent className="dark:bg-gray-900 max-h-[90vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>{movie.Title}</DialogTitle>
 

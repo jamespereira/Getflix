@@ -6,9 +6,11 @@ function Header() {
 
   return (
     <header className="w-full h-16 flex items-center justify-center bg-black fixed z-10">
-      <div className="w-full w-max[1280px] flex justify-between items-center px-12">
+      <div className="w-full w-max[1280px] flex justify-between items-center px-4 md:px-8 lg:px-12">
         <Link to="/">
-          <h1 className="text-3xl text-white font-semibold">Getflix</h1>
+          <h1 className="text-3xl text-(--primary-blue) font-semibold">
+            Getflix
+          </h1>
         </Link>
         <div className="flex flex-row gap-8">
           <ThemeSwitcher />

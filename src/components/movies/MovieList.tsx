@@ -6,6 +6,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import MovieDetails from "./MovieDetails";
 import { Movie } from "@/types";
 import { FaRegStar, FaStar } from "react-icons/fa";
@@ -22,22 +29,35 @@ function MovieList({ movies, updateWatchlist, watchlist }: Props) {
       {movies?.map((movie: Movie) => (
         <Card
           key={movie.imdbID}
-          className="p-4 justify-between gap-0 dark:bg-gray-900"
+          className="p-4 justify-between gap-0 dark:bg-gray-900 shadow-md"
         >
           <CardHeader className="p-2">
             <CardTitle>
               <div className="flex justify-between items-start">
                 <h2 className="text-2xl">{movie.Title}</h2>
-                <button
-                  className="cursor-pointer"
-                  onClick={() => updateWatchlist(movie)}
-                >
-                  {watchlist.some((m) => m.imdbID === movie.imdbID) ? (
-                    <FaStar color="#fc0b83" />
-                  ) : (
-                    <FaRegStar />
-                  )}
-                </button>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        className="cursor-pointer"
+                        onClick={() => updateWatchlist(movie)}
+                      >
+                        {watchlist.some((m) => m.imdbID === movie.imdbID) ? (
+                          <FaStar color="#fc0b83" />
+                        ) : (
+                          <FaRegStar />
+                        )}
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      {watchlist.some((m) => m.imdbID === movie.imdbID) ? (
+                        <p>Remove from Watchlist</p>
+                      ) : (
+                        <p>Add to Watchlist</p>
+                      )}
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </CardTitle>
             <CardDescription>

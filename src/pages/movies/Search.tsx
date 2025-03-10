@@ -71,11 +71,12 @@ function Search() {
   }, [debouncedSearch, debouncedPage, debouncedType]);
 
   return (
-    <section className="flex flex-col w-full max-w-[1280px] p-12">
+    <section className="flex flex-col w-full max-w-[1280px] p-4 md:p-8 lg:p-12">
       <SearchBar
         handleInputChange={handleInputChange}
         search={search}
         handleFilterChange={handleFilterChange}
+        movies={movies}
       />
 
       <InfiniteScroll

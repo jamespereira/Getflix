@@ -1,3 +1,4 @@
+import { Movie } from "@/types";
 import { Input } from "../ui/input";
 import {
   Select,
@@ -11,9 +12,15 @@ type Props = {
   handleInputChange: (input: string) => void;
   search: string;
   handleFilterChange: (input: string) => void;
+  movies: Movie[];
 };
 
-function SearchBar({ handleInputChange, search, handleFilterChange }: Props) {
+function SearchBar({
+  handleInputChange,
+  search,
+  handleFilterChange,
+  movies,
+}: Props) {
   const filterType = [
     { displayName: "All", value: "all" },
     { displayName: "Movie", value: "movie" },
@@ -22,9 +29,19 @@ function SearchBar({ handleInputChange, search, handleFilterChange }: Props) {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-4xl uppercase">Search</h1>
-      <div className="flex gap-6">
+    <div
+      className={`flex flex-col gap-4  transition-all duration-500 ease-in-out
+         ${!movies.length && search.length < 3 ? "pt-[calc(50vh-168px)]" : ""}
+      `}
+    >
+      <h1
+        className={`${
+          !movies.length && search.length < 3 ? "text-6xl" : "text-4xl"
+        } uppercase`}
+      >
+        Search
+      </h1>
+      <div className="flex gap-2 md:gap-6 flex-col md:flex-row">
         <Input
           type="text"
           value={search}
@@ -33,7 +50,7 @@ function SearchBar({ handleInputChange, search, handleFilterChange }: Props) {
           placeholder="Search movies..."
         />
         <Select onValueChange={(value) => handleFilterChange(value)}>
-          <SelectTrigger className="w-[180px] bg-white dark:bg-gray-950">
+          <SelectTrigger className="bg-white dark:bg-gray-950 w-full md:w-50">
             <SelectValue placeholder="Filter Type" />
           </SelectTrigger>
           <SelectContent>

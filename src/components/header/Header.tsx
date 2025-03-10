@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import ThemeSwitcher from "../theme/ThemeSwitcher";
 
 function Header() {
   const location = useLocation();
@@ -9,30 +10,33 @@ function Header() {
         <Link to="/">
           <h1 className="text-3xl text-white font-semibold">Getflix</h1>
         </Link>
-        <nav className="flex flex-row gap-8">
-          <Link to="/">
-            <p
-              className={`${
-                location.pathname === "/"
-                  ? "text-white"
-                  : "text-muted-foreground"
-              } text-sm`}
-            >
-              Search
-            </p>
-          </Link>
-          <Link to="/Watchlist">
-            <p
-              className={`${
-                location.pathname === "/Watchlist"
-                  ? "text-white"
-                  : "text-muted-foreground"
-              } text-sm`}
-            >
-              Watchlist
-            </p>
-          </Link>
-        </nav>
+        <div className="flex flex-row gap-8">
+          <ThemeSwitcher />
+          <nav className="flex flex-row gap-8">
+            <Link to="/">
+              <p
+                className={`${
+                  location.pathname === "/"
+                    ? "text-white"
+                    : "text-muted-foreground"
+                } text-sm`}
+              >
+                Search
+              </p>
+            </Link>
+            <Link to="/Watchlist">
+              <p
+                className={`${
+                  location.pathname === "/Watchlist"
+                    ? "text-white"
+                    : "text-muted-foreground"
+                } text-sm`}
+              >
+                Watchlist
+              </p>
+            </Link>
+          </nav>
+        </div>
       </div>
     </header>
   );

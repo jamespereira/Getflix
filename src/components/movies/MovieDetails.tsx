@@ -52,7 +52,7 @@ function MovieDetails({ movieId }: Props) {
         </Button>
       </DialogTrigger>
       {movie ? (
-        <DialogContent>
+        <DialogContent className="dark:bg-gray-900">
           <DialogHeader>
             <DialogTitle>{movie.Title}</DialogTitle>
 

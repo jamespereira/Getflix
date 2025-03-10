@@ -29,11 +29,11 @@ function SearchBar({ handleInputChange, search, handleFilterChange }: Props) {
           type="text"
           value={search}
           onChange={(event) => handleInputChange(event.target.value)}
-          className="bg-white"
+          className="bg-white dark:bg-gray-950"
           placeholder="Search movies..."
         />
         <Select onValueChange={(value) => handleFilterChange(value)}>
-          <SelectTrigger className="w-[180px] bg-white">
+          <SelectTrigger className="w-[180px] bg-white dark:bg-gray-950">
             <SelectValue placeholder="Filter Type" />
           </SelectTrigger>
           <SelectContent>

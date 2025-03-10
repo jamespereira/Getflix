@@ -20,7 +20,10 @@ function MovieList({ movies, updateWatchlist, watchlist }: Props) {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 py-6">
       {movies?.map((movie: Movie) => (
-        <Card key={movie.imdbID} className="p-4 justify-between gap-0">
+        <Card
+          key={movie.imdbID}
+          className="p-4 justify-between gap-0 dark:bg-gray-900"
+        >
           <CardHeader className="p-2">
             <CardTitle>
               <div className="flex justify-between items-start">

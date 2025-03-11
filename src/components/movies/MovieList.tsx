@@ -43,9 +43,12 @@ function MovieList({ movies, updateWatchlist, watchlist }: Props) {
                         onClick={() => updateWatchlist(movie)}
                       >
                         {watchlist.some((m) => m.imdbID === movie.imdbID) ? (
-                          <FaStar color="#fc0b83" />
+                          <FaStar color="#fc0b83" className="min-h-6 min-w-6" />
                         ) : (
-                          <FaRegStar />
+                          <FaRegStar
+                            color="oklch(0.708 0 0)"
+                            className="min-h-6 min-w-6"
+                          />
                         )}
                       </button>
                     </TooltipTrigger>

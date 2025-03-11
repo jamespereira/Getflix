@@ -100,23 +100,20 @@ function MovieDetails({ movieId }: Props) {
           </div>
 
           {movie.Ratings.length ? (
-            <>
-              {/* <h2 className="font-semibold text-left">Ratings:</h2> */}
-              <div className="flex justify-between h-8">
-                <MovieRating
-                  icon={imdbIcon}
-                  rating={getMovieRating(movie, "internet")}
-                />
-                <MovieRating
-                  icon={rottenTomatoesIcon}
-                  rating={getMovieRating(movie, "rotten")}
-                />
-                <MovieRating
-                  icon={metacriticIcon}
-                  rating={getMovieRating(movie, "meta")}
-                />
-              </div>
-            </>
+            <div className="flex justify-between h-8">
+              <MovieRating
+                icon={imdbIcon}
+                rating={getMovieRating(movie, "internet")}
+              />
+              <MovieRating
+                icon={rottenTomatoesIcon}
+                rating={getMovieRating(movie, "rotten")}
+              />
+              <MovieRating
+                icon={metacriticIcon}
+                rating={getMovieRating(movie, "meta")}
+              />
+            </div>
           ) : null}
           <div className="flex flex-col gap-2 text-left">
             <p>

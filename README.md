@@ -25,7 +25,7 @@ To get started with this project, clone the repository and install the dependenc
 3. Run the project
    npm run dev
 
-This will start the app on http://localhost:3000
-
 4. Run tests  
    npm run test
+
+This will start the app on http://localhost:3000

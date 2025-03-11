@@ -45,11 +45,15 @@ function MovieDetails({ movieId }: Props) {
   }
 
   function getMovieRating(movie: MovieFullDetails, source: string) {
-    const rating = movie.Ratings.filter((rating) =>
+    const rating = movie.Ratings?.filter((rating) =>
       rating.Source.toLowerCase().includes(source)
-    )[0].Value;
+    )[0]?.Value;
 
     return rating;
+  }
+
+  function getMovieValue(value: string) {
+    return value === "N/A" ? "Not available" : value;
   }
 
   return (
@@ -69,60 +73,71 @@ function MovieDetails({ movieId }: Props) {
             <DialogTitle>
               <h2 className="text-2xl text-left">{movie.Title} </h2>
             </DialogTitle>
-            <div className="flex gap-2">
-              <div>{movie.Released}</div> |<div>{movie.Rated}</div> |
-              <div>{movie.Runtime}</div>
+            <div className="flex pb-2">
+              <span className="border-r-1 border-stone-400 pr-4">
+                {movie.Released}
+              </span>
+              <span className="border-r-1 border-stone-400 px-4">
+                {movie.Rated}
+              </span>
+              <span className="pl-4">{movie.Runtime}</span>
             </div>
 
             <div className="overflow-hidden">
-              <img
-                src={movie.Poster}
-                alt={movie.Title}
-                className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
-              />
+              {movie.Poster !== "N/A" && (
+                <img
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
+                />
+              )}
             </div>
             <div className="py-4 flex flex-col gap-2 text-left">
               <p>
-                <strong>Plot:</strong> {movie.Plot}
+                <strong>Plot:</strong> {getMovieValue(movie.Plot)}
               </p>
               <p>
-                <strong>Genre:</strong> {movie.Genre}
+                <strong>Genre:</strong> {getMovieValue(movie.Genre)}
               </p>
               <p>
-                <strong>Director:</strong> {movie.Director}
+                <strong>Director:</strong> {getMovieValue(movie.Director)}
               </p>
               <p>
-                <strong>Writer:</strong> {movie.Writer}
+                <strong>Writer:</strong> {getMovieValue(movie.Writer)}
               </p>
               <p>
-                <strong>Actors:</strong> {movie.Actors}
+                <strong>Actors:</strong> {getMovieValue(movie.Actors)}
               </p>
               <p>
-                <strong>Language:</strong> {movie.Language}
+                <strong>Language:</strong> {getMovieValue(movie.Language)}
               </p>
               <p>
-                <strong>Country:</strong> {movie.Country}
+                <strong>Country:</strong> {getMovieValue(movie.Country)}
               </p>
               <p>
-                <strong>Awards:</strong> {movie.Awards}
+                <strong>Awards:</strong> {getMovieValue(movie.Awards)}
               </p>
             </div>
 
-            <h2 className="font-semibold text-left">Ratings:</h2>
-            <div className="flex justify-between h-8">
-              <MovieRating
-                icon={imdbIcon}
-                rating={getMovieRating(movie, "internet")}
-              />
-              <MovieRating
-                icon={rottenTomatoesIcon}
-                rating={getMovieRating(movie, "rotten")}
-              />
-              <MovieRating
-                icon={metacriticIcon}
-                rating={getMovieRating(movie, "meta")}
-              />
-            </div>
+            {movie.Ratings.length ? (
+              <>
+                <h2 className="font-semibold text-left">Ratings:</h2>
+                <div className="flex justify-between h-8">
+                  <MovieRating
+                    icon={imdbIcon}
+                    rating={getMovieRating(movie, "internet")}
+                  />
+                  <MovieRating
+                    icon={rottenTomatoesIcon}
+                    rating={getMovieRating(movie, "rotten")}
+                  />
+                  <MovieRating
+                    icon={metacriticIcon}
+                    rating={getMovieRating(movie, "meta")}
+                  />
+                </div>
+              </>
+            ) : null}
           </DialogHeader>
         </DialogContent>
       ) : null}

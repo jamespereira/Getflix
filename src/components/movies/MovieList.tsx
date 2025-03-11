@@ -66,11 +66,13 @@ function MovieList({ movies, updateWatchlist, watchlist }: Props) {
           </CardHeader>
           <CardContent className="p-2">
             <div className="overflow-hidden">
-              <img
-                src={movie.Poster}
-                alt={movie.Title}
-                className="transition transform hover:scale-110 object-cover w-full h-full duration-150 ease-in-out"
-              />
+              {movie.Poster !== "N/A" && (
+                <img
+                  src={movie?.Poster}
+                  alt={movie.Title}
+                  className="transition transform hover:scale-110 object-cover w-full h-full duration-150 ease-in-out"
+                />
+              )}
             </div>
           </CardContent>
           <CardFooter className="p-2">

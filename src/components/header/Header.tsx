@@ -26,8 +26,8 @@ function Header() {
             <Link to="/Search">
               <p
                 className={`${
-                  location.pathname === "/"
-                    ? "text-white"
+                  location.pathname === "/Search"
+                    ? "text-white font-semibold"
                     : "text-muted-foreground"
                 } text-sm`}
               >
@@ -38,7 +38,7 @@ function Header() {
               <p
                 className={`${
                   location.pathname === "/Watchlist"
-                    ? "text-white"
+                    ? "text-white font-semibold"
                     : "text-muted-foreground"
                 } text-sm`}
               >

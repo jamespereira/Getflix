@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Header from "./Header";
 import { BrowserRouter as Router } from "react-router-dom";
 import { describe, it, expect } from "vitest";
@@ -38,6 +38,7 @@ describe("Header", () => {
     );
 
     const searchLink = screen.getByText("Search");
+    fireEvent.click(searchLink);
     expect(searchLink).toHaveClass("text-white");
   });
 });

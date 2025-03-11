@@ -2,7 +2,7 @@
 
 This project is built with Vite, React, and TailwindCSS and Shadcn.
 
-# Features
+## Features
 
 - Movie Search: Allows users to search for movies using a search bar and apply a filter for different content types (Movies, Series, Episodes).
 - Movie Details: Allows users to click for more details for the films that have been searched.
@@ -11,7 +11,7 @@ This project is built with Vite, React, and TailwindCSS and Shadcn.
 - Responsive Design: The app is fully responsive using TailwindCSS.
 - Unit tests using Vitest and React Testing Library to enable TDD.
 
-# Installation and Usage
+## Installation and Usage
 
 To get started with this project, clone the repository and install the dependencies:
 

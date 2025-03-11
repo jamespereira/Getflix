@@ -13,6 +13,7 @@ import rottenTomatoesIcon from "@/assets/rottenTomatoesIcon.webp";
 import imdbIcon from "@/assets/imdbIcon.webp";
 import metacriticIcon from "@/assets/metacriticIcon.webp";
 import MovieRating from "./MovieRating";
+import { FaImage } from "react-icons/fa";
 
 type Props = {
   movieId: string;
@@ -84,12 +85,16 @@ function MovieDetails({ movieId }: Props) {
             </div>
 
             <div className="overflow-hidden">
-              {movie.Poster !== "N/A" && (
+              {movie.Poster !== "N/A" ? (
                 <img
                   src={movie.Poster}
                   alt={movie.Title}
                   className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
                 />
+              ) : (
+                <div className="flex justify-start items-center">
+                  <FaImage className="h-8 w-8" />
+                </div>
               )}
             </div>
             <div className="py-4 flex flex-col gap-2 text-left">

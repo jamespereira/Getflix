@@ -15,7 +15,7 @@ import {
 
 import MovieDetails from "./MovieDetails";
 import { Movie } from "@/types";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaImage, FaRegStar, FaStar } from "react-icons/fa";
 
 type Props = {
   movies: Movie[];
@@ -66,12 +66,16 @@ function MovieList({ movies, updateWatchlist, watchlist }: Props) {
           </CardHeader>
           <CardContent className="p-2">
             <div className="overflow-hidden">
-              {movie.Poster !== "N/A" && (
+              {movie.Poster !== "N/A" ? (
                 <img
                   src={movie?.Poster}
                   alt={movie.Title}
                   className="transition transform hover:scale-110 object-cover w-full h-full duration-150 ease-in-out"
                 />
+              ) : (
+                <div className="flex justify-center items-center">
+                  <FaImage className="h-8 w-8" />
+                </div>
               )}
             </div>
           </CardContent>

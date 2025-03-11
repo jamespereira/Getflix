@@ -74,76 +74,76 @@ function MovieDetails({ movieId }: Props) {
             <DialogTitle>
               <h2 className="text-2xl text-left">{movie.Title} </h2>
             </DialogTitle>
-            <div className="flex pb-2">
-              <span className="border-r-1 border-stone-400 pr-4">
-                {movie.Released}
-              </span>
-              <span className="border-r-1 border-stone-400 px-4">
-                {movie.Rated}
-              </span>
-              <span className="pl-4">{movie.Runtime}</span>
-            </div>
-
-            <div className="overflow-hidden">
-              {movie.Poster !== "N/A" ? (
-                <img
-                  src={movie.Poster}
-                  alt={movie.Title}
-                  className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
-                />
-              ) : (
-                <div className="flex justify-start items-center">
-                  <FaImage className="h-8 w-8" />
-                </div>
-              )}
-            </div>
-            <div className="py-4 flex flex-col gap-2 text-left">
-              <p>
-                <strong>Plot:</strong> {getMovieValue(movie.Plot)}
-              </p>
-              <p>
-                <strong>Genre:</strong> {getMovieValue(movie.Genre)}
-              </p>
-              <p>
-                <strong>Director:</strong> {getMovieValue(movie.Director)}
-              </p>
-              <p>
-                <strong>Writer:</strong> {getMovieValue(movie.Writer)}
-              </p>
-              <p>
-                <strong>Actors:</strong> {getMovieValue(movie.Actors)}
-              </p>
-              <p>
-                <strong>Language:</strong> {getMovieValue(movie.Language)}
-              </p>
-              <p>
-                <strong>Country:</strong> {getMovieValue(movie.Country)}
-              </p>
-              <p>
-                <strong>Awards:</strong> {getMovieValue(movie.Awards)}
-              </p>
-            </div>
-
-            {movie.Ratings.length ? (
-              <>
-                <h2 className="font-semibold text-left">Ratings:</h2>
-                <div className="flex justify-between h-8">
-                  <MovieRating
-                    icon={imdbIcon}
-                    rating={getMovieRating(movie, "internet")}
-                  />
-                  <MovieRating
-                    icon={rottenTomatoesIcon}
-                    rating={getMovieRating(movie, "rotten")}
-                  />
-                  <MovieRating
-                    icon={metacriticIcon}
-                    rating={getMovieRating(movie, "meta")}
-                  />
-                </div>
-              </>
-            ) : null}
           </DialogHeader>
+          <div className="flex">
+            <span className="border-r-1 border-stone-400 pr-4">
+              {movie.Released}
+            </span>
+            <span className="border-r-1 border-stone-400 px-4">
+              {movie.Rated}
+            </span>
+            <span className="pl-4">{movie.Runtime}</span>
+          </div>
+
+          <div className="overflow-hidden">
+            {movie.Poster !== "N/A" ? (
+              <img
+                src={movie.Poster}
+                alt={movie.Title}
+                className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
+              />
+            ) : (
+              <div className="flex justify-start items-center">
+                <FaImage className="h-8 w-8" />
+              </div>
+            )}
+          </div>
+
+          {movie.Ratings.length ? (
+            <>
+              {/* <h2 className="font-semibold text-left">Ratings:</h2> */}
+              <div className="flex justify-between h-8">
+                <MovieRating
+                  icon={imdbIcon}
+                  rating={getMovieRating(movie, "internet")}
+                />
+                <MovieRating
+                  icon={rottenTomatoesIcon}
+                  rating={getMovieRating(movie, "rotten")}
+                />
+                <MovieRating
+                  icon={metacriticIcon}
+                  rating={getMovieRating(movie, "meta")}
+                />
+              </div>
+            </>
+          ) : null}
+          <div className="flex flex-col gap-2 text-left">
+            <p>
+              <strong>Plot:</strong> {getMovieValue(movie.Plot)}
+            </p>
+            <p>
+              <strong>Genre:</strong> {getMovieValue(movie.Genre)}
+            </p>
+            <p>
+              <strong>Director:</strong> {getMovieValue(movie.Director)}
+            </p>
+            <p>
+              <strong>Writer:</strong> {getMovieValue(movie.Writer)}
+            </p>
+            <p>
+              <strong>Actors:</strong> {getMovieValue(movie.Actors)}
+            </p>
+            <p>
+              <strong>Language:</strong> {getMovieValue(movie.Language)}
+            </p>
+            <p>
+              <strong>Country:</strong> {getMovieValue(movie.Country)}
+            </p>
+            <p>
+              <strong>Awards:</strong> {getMovieValue(movie.Awards)}
+            </p>
+          </div>
         </DialogContent>
       ) : null}
     </Dialog>

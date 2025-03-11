@@ -67,7 +67,7 @@ function MovieDetails({ movieId }: Props) {
         <DialogContent className="dark:bg-gray-900 max-h-[90vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>
-              <h2 className="text-2xl">{movie.Title} </h2>
+              <h2 className="text-2xl text-left">{movie.Title} </h2>
             </DialogTitle>
             <div className="flex gap-2">
               <div>{movie.Released}</div> |<div>{movie.Rated}</div> |
@@ -81,7 +81,7 @@ function MovieDetails({ movieId }: Props) {
                 className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
               />
             </div>
-            <div className="py-4 flex flex-col gap-2">
+            <div className="py-4 flex flex-col gap-2 text-left">
               <p>
                 <strong>Plot:</strong> {movie.Plot}
               </p>
@@ -108,7 +108,7 @@ function MovieDetails({ movieId }: Props) {
               </p>
             </div>
 
-            <h2 className="font-semibold">Ratings:</h2>
+            <h2 className="font-semibold text-left">Ratings:</h2>
             <div className="flex justify-between h-8">
               <MovieRating
                 icon={imdbIcon}

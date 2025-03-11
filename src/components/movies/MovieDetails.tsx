@@ -55,7 +55,11 @@ function MovieDetails({ movieId }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button onClick={() => getMovieDetails(movieId)} variant="default">
+        <Button
+          onClick={() => getMovieDetails(movieId)}
+          variant="default"
+          className="w-full md:w-40 h-10"
+        >
           View Details
         </Button>
       </DialogTrigger>

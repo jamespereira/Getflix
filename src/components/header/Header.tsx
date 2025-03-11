@@ -8,7 +8,7 @@ function Header() {
   return (
     <header className="w-full h-16 flex items-center justify-center bg-black fixed z-10">
       <div className="w-full w-max[1280px] flex justify-between items-center px-4 md:px-8 lg:px-12">
-        <Link to="/">
+        <Link to="/Search">
           <div className="flex gap-2 items-center justify-center">
             <img
               src={GetflixLogo}
@@ -23,7 +23,7 @@ function Header() {
         <div className="flex flex-row gap-8">
           <ThemeSwitcher />
           <nav className="flex flex-row gap-8">
-            <Link to="/">
+            <Link to="/Search">
               <p
                 className={`${
                   location.pathname === "/"

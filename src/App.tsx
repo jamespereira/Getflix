@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter basename="/Getflix">
+    <BrowserRouter>
       <Header />
       <div className="flex flex-1 w-full bg-(--background-azure) justify-center mt-16">
         <Routes>

@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import ThemeSwitcher from "../theme/ThemeSwitcher";
+import GetflixLogo from "@/assets/GetflixLogo.svg";
 
 function Header() {
   const location = useLocation();
@@ -8,9 +9,16 @@ function Header() {
     <header className="w-full h-16 flex items-center justify-center bg-black fixed z-10">
       <div className="w-full w-max[1280px] flex justify-between items-center px-4 md:px-8 lg:px-12">
         <Link to="/">
-          <h1 className="text-3xl text-(--primary-blue) font-semibold">
-            Getflix
-          </h1>
+          <div className="flex gap-2 items-center justify-center">
+            <img
+              src={GetflixLogo}
+              className="flex-1 min-h min-w-8 text-(--primary-blue)"
+              alt="Getflix logo"
+            />
+            <h1 className="hidden sm:block text-3xl text-white font-semibold">
+              Getflix
+            </h1>
+          </div>
         </Link>
         <div className="flex flex-row gap-8">
           <ThemeSwitcher />

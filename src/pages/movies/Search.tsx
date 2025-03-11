@@ -18,16 +18,18 @@ function Search() {
   const [type, setType] = useState("");
   const [debouncedType] = useDebounce(type, 500);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [watchlist, updateWatchlist] = useWatchlist();
 
   async function searchMovies(input: string, page: number, type: string) {
     const apiKey = import.meta.env.VITE_OMDP_API_KEY;
 
+    setIsLoading(true);
     try {
       const { data } = await axiosInstance.get("", {
         params: {
-          s: input,
+          s: input.trim(),
           type: type === "all" ? "" : type,
           page,
           apiKey,
@@ -45,6 +47,8 @@ function Search() {
     } catch (error) {
       console.log(`Error: ${error}`);
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -95,7 +99,13 @@ function Search() {
           watchlist={watchlist}
           updateWatchlist={updateWatchlist}
         />
-        {error && (
+        {isLoading && !error && (
+          <div className="flex w-full items-center gap-4 justify-center p-4">
+            <MoonLoader size={24} />
+            <h4>Loading...</h4>
+          </div>
+        )}
+        {error && !isLoading && (
           <div className="flex w-full items-center gap-4 justify-center">
             <p>Nothing found.</p>
           </div>

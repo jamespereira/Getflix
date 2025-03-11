@@ -9,6 +9,10 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { MovieFullDetails } from "@/types";
 import axiosInstance from "@/utils/axiosInstance";
+import rottenTomatoesIcon from "@/assets/rottenTomatoesIcon.webp";
+import imdbIcon from "@/assets/imdbIcon.webp";
+import metacriticIcon from "@/assets/metacriticIcon.webp";
+import MovieRating from "./MovieRating";
 
 type Props = {
   movieId: string;
@@ -40,6 +44,14 @@ function MovieDetails({ movieId }: Props) {
     }
   }
 
+  function getMovieRating(movie: MovieFullDetails, source: string) {
+    const rating = movie.Ratings.filter((rating) =>
+      rating.Source.toLowerCase().includes(source)
+    )[0].Value;
+
+    return rating;
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -50,68 +62,63 @@ function MovieDetails({ movieId }: Props) {
       {movie ? (
         <DialogContent className="dark:bg-gray-900 max-h-[90vh] overflow-auto">
           <DialogHeader>
-            <DialogTitle>{movie.Title}</DialogTitle>
+            <DialogTitle>
+              <h2 className="text-2xl">{movie.Title} </h2>
+            </DialogTitle>
+            <div className="flex gap-2">
+              <div>{movie.Released}</div> |<div>{movie.Rated}</div> |
+              <div>{movie.Runtime}</div>
+            </div>
 
             <div className="overflow-hidden">
-              <div>
-                <img
-                  src={movie.Poster}
-                  alt={movie.Title}
-                  className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
-                />
-              </div>
+              <img
+                src={movie.Poster}
+                alt={movie.Title}
+                className="w-48 h-auto transition transform hover:scale-110 object-cover duration-150 ease-in-out"
+              />
             </div>
-            <p>
-              <strong>Rated:</strong> {movie.Rated}
-            </p>
-            <p>
-              <strong>Released:</strong> {movie.Released}
-            </p>
-            <p>
-              <strong>Runtime:</strong> {movie.Runtime}
-            </p>
-            <p>
-              <strong>Genre:</strong> {movie.Genre}
-            </p>
-            <p>
-              <strong>Director:</strong> {movie.Director}
-            </p>
-            <p>
-              <strong>Writer:</strong> {movie.Writer}
-            </p>
-            <p>
-              <strong>Actors:</strong> {movie.Actors}
-            </p>
-            <p>
-              <strong>Plot:</strong> {movie.Plot}
-            </p>
-            <p>
-              <strong>Language:</strong> {movie.Language}
-            </p>
-            <p>
-              <strong>Country:</strong> {movie.Country}
-            </p>
-            <p>
-              <strong>Awards:</strong> {movie.Awards}
-            </p>
-
-            <div>
-              <h2 className="font-semibold">Ratings:</h2>
-              <ul>
-                {movie.Ratings.map((rating, index) => (
-                  <li key={index}>
-                    <strong>{rating.Source}:</strong> {rating.Value}
-                  </li>
-                ))}
-              </ul>
+            <div className="py-4 flex flex-col gap-2">
+              <p>
+                <strong>Plot:</strong> {movie.Plot}
+              </p>
+              <p>
+                <strong>Genre:</strong> {movie.Genre}
+              </p>
+              <p>
+                <strong>Director:</strong> {movie.Director}
+              </p>
+              <p>
+                <strong>Writer:</strong> {movie.Writer}
+              </p>
+              <p>
+                <strong>Actors:</strong> {movie.Actors}
+              </p>
+              <p>
+                <strong>Language:</strong> {movie.Language}
+              </p>
+              <p>
+                <strong>Country:</strong> {movie.Country}
+              </p>
+              <p>
+                <strong>Awards:</strong> {movie.Awards}
+              </p>
             </div>
 
-            <p>
-              <strong>Metascore:</strong> {movie.Metascore}
-            </p>
-            <p>
-              <strong>IMDb Rating:</strong> {movie.imdbRating}
-            </p>
+            <h2 className="font-semibold">Ratings:</h2>
+            <div className="flex justify-between h-8">
+              <MovieRating
+                icon={imdbIcon}
+                rating={getMovieRating(movie, "internet")}
+              />
+              <MovieRating
+                icon={rottenTomatoesIcon}
+                rating={getMovieRating(movie, "rotten")}
+              />
+              <MovieRating
+                icon={metacriticIcon}
+                rating={getMovieRating(movie, "meta")}
+              />
+            </div>
           </DialogHeader>
         </DialogContent>
       ) : null}

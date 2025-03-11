@@ -87,12 +87,7 @@ function Search() {
         dataLength={movies.length}
         next={() => setPage((prev) => prev + 1)}
         hasMore={hasMore}
-        loader={
-          <div className="flex w-full items-center gap-4 justify-center p-4">
-            <MoonLoader size={24} />
-            <h4>Loading...</h4>
-          </div>
-        }
+        loader
       >
         <MovieList
           movies={movies}

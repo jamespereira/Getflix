@@ -12,7 +12,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "declaration": false,
+    "emitDeclarationOnly": false
   },
   "include": ["src"]
 }
